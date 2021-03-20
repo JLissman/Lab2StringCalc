@@ -131,5 +131,16 @@ class kalleculatorTest {
 
 
     }
+    @Test
+    void testNegativeNumbers(){
+        kalleculator calc = new kalleculator();
+        //returns numbers of added delims
+        Throwable exception = assertThrows(RuntimeException.class, () -> calc.add("-1,-2,5"));
+        assertEquals("Negative numbers not allowed: -1 -2 ", exception.getMessage());
+
+
+    }
+
+
     }
 

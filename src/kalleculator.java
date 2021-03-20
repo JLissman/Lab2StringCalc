@@ -32,12 +32,12 @@ public class kalleculator {
             inputNumbers = inputNumbers.replace(delim,"|");
 
         }
-        String[] rawSults = inputNumbers.split("|");
+        String[] rawSults = inputNumbers.split("\\|");
         for (String resource :rawSults
         ) {
             if (!resource.equals("|")){
                 result.add(parseInt(resource));
-            }
+             }
         }
         return result;}
 
@@ -66,13 +66,21 @@ public class kalleculator {
 
     public Integer sumNum(ArrayList<Integer> numbers) {
         int sum=0;
+        String negativeNumbers ="";
 
         for (Integer n:numbers
         ) {
+            if (n > 0) {
                 sum = sum + n;
+            }
+            else if (n < 0){
+                negativeNumbers=negativeNumbers + n +" ";
 
+            }
         }
-
+        if (negativeNumbers.length() > 0){
+            throw new RuntimeException("Negative numbers not allowed: "+negativeNumbers);
+        }else{
         return sum;
-    }
+    }}
 }
