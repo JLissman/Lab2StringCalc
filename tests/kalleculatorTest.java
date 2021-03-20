@@ -120,5 +120,16 @@ class kalleculatorTest {
             assertEquals(expectedResult,actualResult);
 
         }
+        @Test
+        void testAddDelimFromAddMethod(){
+            kalleculator calc = new kalleculator();
+            //returns numbers of added delims
+            int actualResult = calc.add("//;\n1,2;3");
+            int expectedResult = 6;
+
+            assertEquals(expectedResult,actualResult);
+
+
+    }
     }
 

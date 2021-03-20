@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.lang.Integer.parseInt;
 
@@ -41,22 +43,36 @@ public class kalleculator {
 
 
 
-    int add(String s){
-        ArrayList<Integer> nums = new ArrayList();
+    int add(String inputString){
+        ArrayList<Integer> numbers;
         int sum = 0;
-        
-        nums = getNumbersFromString(s);
-        sum = sumNum(nums);
+        String extractNumRegex = "//(.+)\\n([0-9]+.*)";
+        Pattern numPat = Pattern.compile(extractNumRegex);
+        Matcher numMatch = numPat.matcher(inputString);
+        boolean foundNum = numMatch.matches();
+        if(foundNum) {
+            String rawDelim = numMatch.group(1);
+            rawDelim.replace("[", "").replace("]", "");
+            addDelims(rawDelim);
+            numbers = getNumbersFromString(numMatch.group(2));
+        }else{
+            numbers = getNumbersFromString(inputString);
+        }
+
+        sum = sumNum(numbers);
 
         return sum;
     }
 
     public Integer sumNum(ArrayList<Integer> numbers) {
         int sum=0;
+
         for (Integer n:numbers
         ) {
-            sum = sum+n;
+                sum = sum + n;
+
         }
+
         return sum;
     }
 }
