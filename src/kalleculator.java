@@ -50,7 +50,22 @@ public class kalleculator {
         Pattern numPat = Pattern.compile(extractNumRegex);
         Matcher numMatch = numPat.matcher(inputString);
         boolean foundNum = numMatch.matches();
-        if(foundNum) {
+        String regexForMultipleDelims = "//\\[(.*)]*\n(.*)";
+        Pattern multiDelimPattern = Pattern.compile(regexForMultipleDelims);
+        Matcher multiDelimMatch = multiDelimPattern.matcher(inputString);
+        boolean foundMultiDelim = multiDelimMatch.matches();
+        if (foundMultiDelim){
+            System.out.println("found multidelim add");
+            String rawDelim = numMatch.group(1);
+            String[] rawDelimList = rawDelim.split("]\\[");
+            for (String delim:rawDelimList) {
+                delim = delim.replace("[","").replace("]","");
+                addDelims(delim);
+            }
+            numbers = getNumbersFromString(numMatch.group(2));
+
+        }else if(foundNum) {
+            System.out.println("found singledelim add");
             String rawDelim = numMatch.group(1);
             rawDelim.replace("[", "").replace("]", "");
             addDelims(rawDelim);

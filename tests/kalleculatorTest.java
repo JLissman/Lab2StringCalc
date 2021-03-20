@@ -152,5 +152,25 @@ class kalleculatorTest {
 
         assertEquals(expectedResult, actualResult);
     }
+    @Test
+    void addMultipleDelims(){
+
+        kalleculator calc = new kalleculator();
+
+        int actualResult = calc.add("//[;][:]\n1:2;3");
+        int expectedResult = 6;
+
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    void addMultipleLongDelims(){
+
+        kalleculator calc = new kalleculator();
+
+        int actualResult = calc.add("//[;;][::]\n1::2;;3");
+        int expectedResult = 6;
+
+        assertEquals(expectedResult, actualResult);
+    }
 
 }
