@@ -70,7 +70,10 @@ public class kalleculator {
 
         for (Integer n:numbers
         ) {
-            if (n > 0) {
+            if(n>999){
+                continue;
+            }
+            else if (n > 0) {
                 sum = sum + n;
             }
             else if (n < 0){
